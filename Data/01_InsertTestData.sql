@@ -1,3 +1,15 @@
+-- Checks if the database 'LibraryDB' exists
+IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'LibraryDB')
+BEGIN
+    THROW 50000, 'LibraryDB does not exist', 1;
+END;
+GO
+
+-- If 'LibraryDB' exists, switch to LibraryDB database (Just in case)
+USE LibraryDB;
+GO
+
+-- Inserts test data into each tables
 INSERT INTO Members (FirstName, LastName, Email, Phone, RegistrationDate)
 VALUES
 ('Alice', 'Wonderland', 'alice.wonderland@email.com', '070-1234567', '2025-01-01'),
@@ -26,6 +38,7 @@ VALUES
 ('2026-01-15', 0, 3);
 GO
 
+-- View test data in each tables
 SELECT * FROM Members;
 SELECT * FROM Books;
 SELECT * FROM Loans;

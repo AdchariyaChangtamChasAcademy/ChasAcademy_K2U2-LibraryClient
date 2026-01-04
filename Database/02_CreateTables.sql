@@ -1,12 +1,15 @@
+-- Checks if the database 'LibraryDB' exists
 IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'LibraryDB')
 BEGIN
     THROW 50000, 'LibraryDB does not exist', 1;
 END;
 GO
 
+-- If 'LibraryDB' exists, switch to LibraryDB database (Just in case)
 USE LibraryDB;
 GO
 
+-- If table 'Members' doesn't exist, create it
 IF OBJECT_ID('dbo.Members', 'U') IS NULL
 BEGIN
 	CREATE TABLE dbo.Members(
@@ -20,6 +23,7 @@ BEGIN
 END
 GO
 
+-- If table 'Books' doesn't exist, create it
 IF OBJECT_ID('dbo.Books', 'U') IS NULL
 BEGIN
 	CREATE TABLE dbo.Books(
@@ -33,6 +37,7 @@ BEGIN
 END
 GO
 
+-- If table 'Loans' doesn't exist, create it
 IF OBJECT_ID('dbo.Loans', 'U') IS NULL
 BEGIN
 	CREATE TABLE dbo.Loans(
@@ -45,6 +50,7 @@ BEGIN
 END
 GO
 
+-- If table 'LoanReturns' doesn't exist, create it
 IF OBJECT_ID('dbo.LoanReturns', 'U') IS NULL
 BEGIN
 	CREATE TABLE dbo.LoanReturns(
