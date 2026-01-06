@@ -4,12 +4,12 @@ This project implements a library system for managing books, members, loans, and
 
 ## How to
 ### 1. Create Database, LibraryDB
-1. Navigate to the `\Database` folder.
+1. Navigate to the `..\Database` folder.
 2. Execute the SQL scripts in SQL Server Management Studio (SSMS) in numerical order to create the database, tables, and other objects. Starting with `01_CreateDatabase.sql` -> `02_CreateTables.sql` -> etc.
-3. *(Optional)* Navigate to the `\Data` folder and run `01_InsertTestData.sql` to insert sample data into the database.
+3. *(Optional)* Navigate to the `..\Data` folder and run `01_InsertTestData.sql` to insert sample data into the database.
 
 ### 2. Run Console App
-1. Navigate to the `\LibraryClient` folder.
+1. Navigate to the `..\LibraryClient` folder.
 2. Open the project `LibraryClient.sln` in Visual Studio.
 3. Ensure the project targets .NET 8.0.
 4. Run the program. (Ctrl + F5)
