@@ -1,7 +1,8 @@
 -- Checks if the database 'LibraryDB' exists
 IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'LibraryDB')
 BEGIN
-    THROW 50000, 'LibraryDB does not exist', 1;
+    RAISERROR('LibraryDB does not exist', 16, 1);
+    RETURN;
 END;
 GO
 
@@ -20,7 +21,7 @@ GO
 INSERT INTO Books (Title, Author, ISBN, PublicationDate, Quantity)
 VALUES
 ('The Hobbit', 'J.R.R. Tolkien', '9780547928227', '1937-11-21', 2),
-('To Kill a Mockingbird ', 'Harper Lee', '9780061120084', '1960-07-11', 3),
+('To Kill a Mockingbird', 'Harper Lee', '9780061120084', '1960-07-11', 3),
 ('Nineteen Eighty-Four', 'George Orwell', '9780201633610', '1949-06-08', 4);
 GO
 
@@ -43,3 +44,9 @@ SELECT * FROM Members;
 SELECT * FROM Books;
 SELECT * FROM Loans;
 SELECT * FROM LoanReturns;
+
+-- FOR TESTING PURPOSES
+--TRUNCATE TABLE Members;
+--TRUNCATE TABLE Books;
+--TRUNCATE TABLE Loans;
+--TRUNCATE TABLE LoanReturns;

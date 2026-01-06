@@ -17,6 +17,7 @@ public partial class Loan
     public DateOnly LoanDate { get; set; }
 
     public DateOnly DueDate { get; set; }
+    public bool? IsReturned { get; set; }
 
     [Column("FKMemberID")]
     public int FkmemberId { get; set; }

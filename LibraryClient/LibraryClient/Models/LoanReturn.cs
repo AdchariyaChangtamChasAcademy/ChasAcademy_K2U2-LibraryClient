@@ -6,11 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryClient.Models;
 
-[Keyless]
-[Index("FkloanId", Name = "IX_Returns_LoadID")]
-[Index("FkloanId", Name = "UQ__LoanRetu__759C88ABE7E29DF2", IsUnique = true)]
+//[Keyless]
+//[Index("FkloanId", Name = "IX_Returns_LoadID")]
+//[Index("FkloanId", Name = "UQ__LoanRetu__759C88ABE7E29DF2", IsUnique = true)]
 public partial class LoanReturn
 {
+    [Key]
     [Column("LoanReturnID")]
     public int LoanReturnId { get; set; }
 

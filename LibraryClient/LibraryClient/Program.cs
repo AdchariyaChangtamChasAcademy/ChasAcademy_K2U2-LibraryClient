@@ -9,7 +9,7 @@ namespace LibraryClient
         static void Main(string[] args)
         {
             var context = new Data.LibraryContext();
-            var loanService = new LoanServices(context);
+            var loanService = new LibraryServices(context);
             var menu = new ConsoleMenu(loanService);
 
             menu.Show();

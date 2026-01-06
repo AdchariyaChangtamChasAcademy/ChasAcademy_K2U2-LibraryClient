@@ -1,7 +1,8 @@
 -- Checks if the database 'LibraryDB' exists
 IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'LibraryDB')
 BEGIN
-    THROW 50000, 'LibraryDB does not exist', 1;
+    RAISERROR('LibraryDB does not exist', 16, 1);
+    RETURN;
 END;
 GO
 
@@ -44,6 +45,7 @@ BEGIN
 		LoanID INT IDENTITY(1,1) PRIMARY KEY,
 		LoanDate DATE NOT NULL DEFAULT CAST(GETDATE() AS DATE),
 		DueDate DATE NOT NULL,
+		IsReturned BIT NOT NULL DEFAULT 0,
 		FKMemberID INT NOT NULL FOREIGN KEY REFERENCES dbo.Members(MemberID),
 		FKBookID INT NOT NULL FOREIGN KEY REFERENCES dbo.Books(BookID)
 	);

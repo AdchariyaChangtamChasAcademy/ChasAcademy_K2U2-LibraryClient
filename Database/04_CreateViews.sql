@@ -1,7 +1,8 @@
 -- Checks if the database 'LibraryDB' exists
 IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'LibraryDB')
 BEGIN
-    THROW 50000, 'LibraryDB does not exist', 1;
+    RAISERROR('LibraryDB does not exist', 16, 1);
+    RETURN;
 END;
 GO
 
