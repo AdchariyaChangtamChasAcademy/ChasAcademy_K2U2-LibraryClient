@@ -3,7 +3,7 @@
 This project implements a library system for managing books, members, loans, and returns. The system uses SQL Server for data storage and Entity Framework in C# to interact with the database through a console application.
 
 ## How to
-### 1. Create Database LibraryDB
+### 1. Create Database, LibraryDB
 1. Navigate to the `Database` folder.
 2. Execute the SQL scripts in SQL Server Management Studio (SSMS) in numerical order to create the database, tables, and other objects.
 3. *(Optional)* Navigate to the `Data` folder and run `01_InsertTestData.sql` to insert sample data into the database.
