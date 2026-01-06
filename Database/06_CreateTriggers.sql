@@ -11,6 +11,7 @@ USE LibraryDB;
 GO
 
 -- Creates trigger that triggers whenever a book is returned, the quantity of relevant book is increased by 1.
+-- (Trigger logic protects the database even if multiple application is in use)
 CREATE TRIGGER dbo.trg_IncreaseStockOnReturn
 ON dbo.LoanReturns
 AFTER INSERT

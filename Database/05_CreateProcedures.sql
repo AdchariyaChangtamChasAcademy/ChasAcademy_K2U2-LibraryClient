@@ -10,10 +10,10 @@ GO
 USE LibraryDB;
 GO
 
--- Creates a procedue that does the following
+-- Creates a procedue that does the following:
 -- 1. Checks if a book is available (Quantity > 0)
 -- 2. Creates a new loan
--- 3. Updates relevant book quantity
+-- 3. Updates the book quantity
 CREATE PROCEDURE dbo.sp_CreateLoan
     @MemberID INT,
     @BookID INT,
@@ -21,9 +21,16 @@ CREATE PROCEDURE dbo.sp_CreateLoan
 AS
 BEGIN
     SET NOCOUNT ON;
+    SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
     BEGIN TRANSACTION;
 
-    IF (SELECT Quantity FROM dbo.Books WHERE BookID = @BookID) <= 0
+    -- Atomic update, ensures that availability check and quantity update occur in a single operation, preventing race conditions.
+    UPDATE dbo.Books
+    SET Quantity = Quantity - 1
+    WHERE BookID = @BookID
+      AND Quantity > 0;
+
+    IF @@ROWCOUNT = 0
     BEGIN
         ROLLBACK;
         THROW 50001, 'Book not available', 1;
@@ -31,10 +38,6 @@ BEGIN
 
     INSERT INTO dbo.Loans (LoanDate, DueDate, FKMemberID, FKBookID)
     VALUES (CAST(GETDATE() AS DATE), @DueDate, @MemberID, @BookID);
-
-    UPDATE dbo.Books
-    SET Quantity = Quantity - 1
-    WHERE BookID = @BookID;
 
     COMMIT;
 END;
