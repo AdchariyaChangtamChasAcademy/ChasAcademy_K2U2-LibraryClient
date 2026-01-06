@@ -25,11 +25,11 @@ VALUES
 ('Nineteen Eighty-Four', 'George Orwell', '9780201633610', '1949-06-08', 4);
 GO
 
-INSERT INTO Loans(LoanDate, DueDate, FKMemberID, FKBookID)
+INSERT INTO Loans(LoanDate, DueDate, IsReturned, FKMemberID, FKBookID)
 VALUES
-('2025-01-01', '2025-01-15', 1, 2),
-('2025-02-02', '2025-02-16', 2, 3),
-('2026-01-01', '2026-01-15', 3, 1);
+('2025-01-01', '2025-01-15', 0, 1, 2),
+('2025-02-02', '2025-02-16', 0, 2, 3),
+('2026-01-01', '2026-01-15', 0, 3, 1);
 GO
 
 INSERT INTO LoanReturns(ReturnDate, IsLate, FKLoanID)
@@ -44,9 +44,3 @@ SELECT * FROM Members;
 SELECT * FROM Books;
 SELECT * FROM Loans;
 SELECT * FROM LoanReturns;
-
--- FOR TESTING PURPOSES
---TRUNCATE TABLE Members;
---TRUNCATE TABLE Books;
---TRUNCATE TABLE Loans;
---TRUNCATE TABLE LoanReturns;

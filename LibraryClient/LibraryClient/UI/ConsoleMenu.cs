@@ -21,6 +21,7 @@ namespace LibraryClient.UI
 
         public void Show()
         {
+            ConsolePrintHelper.Banner();
             bool running = true;
             while (running)
             {
@@ -28,6 +29,7 @@ namespace LibraryClient.UI
                 ConsolePrintHelper.AdminTitle("LIBRARY");
                 ConsolePrintHelper.AdminMenu("EDIT MENU", new List<string>
                 {
+                    "List all books",
                     "Search book",         // Sök efter böcker
                     "Borrow book",         // Registrera lån
                     "Return book",         // Registrera återlämningar
@@ -40,21 +42,24 @@ namespace LibraryClient.UI
                 switch (choice)
                 {
                     case "1":
-                        SearchBook();
+                        ListAllBooks();
                         break;
                     case "2":
-                        CreateLoan();
+                        SearchBook();
                         break;
                     case "3":
-                        CreateLoanReturn();
+                        CreateLoan();
                         break;
                     case "4":
-                        ShowActiveLoans();
+                        CreateLoanReturn();
                         break;
                     case "5":
-                        CreateMember();
+                        ShowActiveLoans();
                         break;
                     case "6":
+                        CreateMember();
+                        break;
+                    case "7":
                         CreateBook();
                         break;
                     case "0":
@@ -62,6 +67,12 @@ namespace LibraryClient.UI
                     default: ConsolePrintHelper.FaultyMenuChoice(); break;
                 }
             }
+        }
+
+        private void ListAllBooks()
+        {
+            ConsolePrintHelper.AdminList("BOOKS", _libraryService.GetBooksAsStringList());
+            ConsolePrintHelper.Pause();
         }
 
         private void SearchBook()
