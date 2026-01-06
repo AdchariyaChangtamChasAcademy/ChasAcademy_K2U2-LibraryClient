@@ -101,7 +101,7 @@ namespace LibraryClient.Services
             using var context = new LibraryContext();
 
             var membersList = context.Members
-                .Select(m => $" ID: {m.MemberId} | NAME: {m.FirstName} {m.LastName}")
+                .Select(m => $" [ID: {m.MemberId}] | NAME: {m.FirstName} {m.LastName}")
                 .ToList();
 
             return membersList;
@@ -115,7 +115,7 @@ namespace LibraryClient.Services
             var booksList = context.Loans
                 .Where(l => l.FkmemberId == memberID)
                 .Select(l =>
-                    $" ID: {l.LoanId} | [BOOK ID: {l.FkbookId} | TITLE: {l.Fkbook.Title} | LoanDate: {l.LoanDate} | DueDate: {l.DueDate}]"
+                    $" [ID: {l.LoanId}] | TITLE: {l.Fkbook.Title} | LoanDate: {l.LoanDate} | DueDate: {l.DueDate}]"
                 )
                 .ToList();
 
@@ -143,7 +143,7 @@ namespace LibraryClient.Services
 
             var booksList = context.Books
                 .Where(b => b.Quantity > 0)
-                .Select(b => $"AVAILABLE: {b.Quantity} ID: {b.BookId} | TITLE: {b.Title} | AUTHOR: {b.Author} | PUBLICATION DATE: {b.PublicationDate}")
+                .Select(b => $" [ID: {b.BookId}] QTY: {b.Quantity} | TITLE: {b.Title} | AUTHOR: {b.Author} | PUBLICATION DATE: {b.PublicationDate}")
                 .ToList();
 
             return booksList;

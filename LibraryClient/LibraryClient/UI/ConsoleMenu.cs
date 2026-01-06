@@ -21,6 +21,7 @@ namespace LibraryClient.UI
 
         public void Show()
         {
+            ConsolePrintHelper.Banner();
             bool running = true;
             while (running)
             {
