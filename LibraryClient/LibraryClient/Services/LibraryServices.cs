@@ -113,7 +113,7 @@ namespace LibraryClient.Services
             using var context = new LibraryContext();
 
             var booksList = context.Loans
-                .Where(l => l.FkmemberId == memberID)
+                .Where(l => l.FkmemberId == memberID && l.IsReturned != true)
                 .Select(l =>
                     $" [ID: {l.LoanId}] | TITLE: {l.Fkbook.Title} | LoanDate: {l.LoanDate} | DueDate: {l.DueDate}]"
                 )
